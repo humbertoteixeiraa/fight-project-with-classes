@@ -23,7 +23,7 @@ class Character {
     }
 }
 
-class knight extends Character {
+class Knight extends Character {
     //VARIABLES
     
 
@@ -69,8 +69,49 @@ class Sorcerer extends Character {
    
 }
 
-//INSTANCES
+class LittleMonster extends Character {
+    //VARIABLES
+    
 
+    //CONSTRUCTIVE FUNCTION
+    constructor(name) {
+        super('Little Monster');
 
-//TESTS
+        this.life = 40;
+        this.attack = 4;
+        this.defense = 4;
+        this.maxLife = this.life;
+    }
+    
+    //ACTIONS
+    
+    //GETTERS
+    
+
+    //SETTERS
+   
+}
+
+class BigMonster extends Character {
+    //VARIABLES
+    
+
+    //CONSTRUCTIVE FUNCTION
+    constructor(name) {
+        super('Big Monster');
+
+        this.life = 120;
+        this.attack = 16;
+        this.defense = 6;
+        this.maxLife = this.life;
+    }
+    
+    //ACTIONS
+    
+    //GETTERS
+    
+
+    //SETTERS
+   
+}
 
