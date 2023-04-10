@@ -10,8 +10,6 @@ class Character {
         this.name = name;
     }
     
-    //ACTIONS
-    
     //GETTERS
     get life() {
         return this._life
@@ -23,10 +21,31 @@ class Character {
     }
 }
 
-class Knight extends Character {
-    //VARIABLES
-    
+class Stage {
+    //CONSTRUCTIVE FUNCTION
+    constructor(fighter1, fighter2, fighter1El, fighter2El) {
+        this.fighter1 = fighter1;
+        this.fighter2 = fighter2;
+        this.fighter1El = fighter1El;
+        this.fighter2El = fighter2El;
+    }
 
+    //ACTION
+    start() {
+        this.update();
+    }
+
+    update() {
+        /* FIGHTER 1 */
+        this.fighter1El.querySelector('.name').innerHTML = this.fighter1.name;
+
+        /* FIGHTER 2 */
+        this.fighter2El.querySelector('.name').innerHTML = this.fighter2.name;
+    }
+
+}
+
+class Knight extends Character {
     //CONSTRUCTIVE FUNCTION
     constructor(name) {
         super(name);
@@ -36,20 +55,9 @@ class Knight extends Character {
         this.defense = 8;
         this.maxLife = this.life;
     }
-    
-    //ACTIONS
-    
-    //GETTERS
-    
-
-    //SETTERS
-   
 }
 
 class Sorcerer extends Character {
-    //VARIABLES
-    
-
     //CONSTRUCTIVE FUNCTION
     constructor(name) {
         super(name);
@@ -59,20 +67,9 @@ class Sorcerer extends Character {
         this.defense = 3;
         this.maxLife = this.life;
     }
-    
-    //ACTIONS
-    
-    //GETTERS
-    
-
-    //SETTERS
-   
 }
 
 class LittleMonster extends Character {
-    //VARIABLES
-    
-
     //CONSTRUCTIVE FUNCTION
     constructor(name) {
         super('Little Monster');
@@ -82,20 +79,9 @@ class LittleMonster extends Character {
         this.defense = 4;
         this.maxLife = this.life;
     }
-    
-    //ACTIONS
-    
-    //GETTERS
-    
-
-    //SETTERS
-   
 }
 
 class BigMonster extends Character {
-    //VARIABLES
-    
-
     //CONSTRUCTIVE FUNCTION
     constructor(name) {
         super('Big Monster');
@@ -105,13 +91,5 @@ class BigMonster extends Character {
         this.defense = 6;
         this.maxLife = this.life;
     }
-    
-    //ACTIONS
-    
-    //GETTERS
-    
-
-    //SETTERS
-   
 }
 
