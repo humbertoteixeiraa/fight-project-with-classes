@@ -52,7 +52,15 @@ class Stage {
     }
 
     doAttack(attacking, attacked) {
-        console.log(`${attacking.name} está atacando ${attacked.name}`);
+        if(attacking.life <= 0 || attacked.life <= 0) {
+            console.log(`Attacking dead dog!`);
+            return;
+        }
+
+        let attackFactor = (Math.random() * 2).toFixed(2);
+        let actualAttack = attacking.attack * attackFactor;
+        
+        console.log(actualAttack);
 
         this.update();
     }
