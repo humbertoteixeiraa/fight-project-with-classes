@@ -23,11 +23,12 @@ class Character {
 
 class Stage {
     //CONSTRUCTIVE FUNCTION
-    constructor(fighter1, fighter2, fighter1El, fighter2El) {
+    constructor(fighter1, fighter2, fighter1El, fighter2El, logObject) {
         this.fighter1 = fighter1; //char
         this.fighter2 = fighter2; //monster
         this.fighter1El = fighter1El; //char elements
         this.fighter2El = fighter2El; //monster elements
+        this.log = logObject; //log
     }
 
     //ACTION
@@ -41,30 +42,61 @@ class Stage {
 
     update() {
         /* FIGHTER 1 */
-        this.fighter1El.querySelector('.name').innerHTML = `${this.fighter1.name} - ${this.fighter1.life} HP`;
+        this.fighter1El.querySelector('.name').innerHTML = `${this.fighter1.name} - ${this.fighter1.life.toFixed(1)} HP`;
         let f1Pct = (this.fighter1.life / this.fighter1.maxLife) * 100;
         this.fighter1El.querySelector('.bar').style.width = `${f1Pct}%`;
 
         /* FIGHTER 2 */
-        this.fighter2El.querySelector('.name').innerHTML = `${this.fighter2.name} - ${this.fighter2.life} HP`;
+        this.fighter2El.querySelector('.name').innerHTML = `${this.fighter2.name} - ${this.fighter2.life.toFixed(1)} HP`;
         let f2Pct = (this.fighter2.life / this.fighter2.maxLife) * 100;
         this.fighter2El.querySelector('.bar').style.width = `${f2Pct}%`;
     }
 
     doAttack(attacking, attacked) {
         if(attacking.life <= 0 || attacked.life <= 0) {
-            console.log(`Attacking dead dog!`);
+            this.log.addMensage(`Attacking dead dog!`);
             return;
         }
 
         let attackFactor = (Math.random() * 2).toFixed(2);
+        let defenseFactor = (Math.random() * 2).toFixed(2);
+
         let actualAttack = attacking.attack * attackFactor;
+        let actualDefense = attacked.defense * defenseFactor;
         
-        console.log(actualAttack);
+        if(actualAttack > actualDefense) {
+            attacked.life -= actualAttack;
+            this.log.addMensage(`${attacking.name} did ${actualAttack.toFixed(2)} damage out of ${attacked.name}`);
+        } else {
+            this.log.addMensage(`${attacked.name} managed to defend himself ...`);
+        }
 
         this.update();
     }
+}
 
+class Log {
+    //VARIABLES
+    list = [];
+
+    //CONSTRUCTIVE FUNCTION
+    constructor(listEl) {
+        this.listEl = listEl;
+    }
+
+    //ACTIONS
+    addMensage(msg) {
+        this.list.push(msg);
+        this.render();
+    }
+
+    render() {
+        this.listEl.innerHTML = '';
+
+        for (let i in this.list) {
+            this.listEl.innerHTML += `<li>${this.list[i]}</li>`;
+        }
+    }
 }
 
 class Knight extends Character {
