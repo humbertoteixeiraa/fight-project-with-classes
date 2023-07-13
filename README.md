@@ -1,2 +1,3 @@
-# fight-project
-Character fight project, using the concept of CLASSES, created in the B7 WEB Javascript course.
+# fight-project-with-classes
+* Objective: Working class concepts with JavaScript.
+* Technologies used: HTML5, CSS3 and JavaScript.
